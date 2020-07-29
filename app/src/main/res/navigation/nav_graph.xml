@@ -24,5 +24,98 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_fingerprintFragment"
+            app:destination="@id/fingerprintFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_pinFragment"
+            app:destination="@id/pinFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_faceIdFragment"
+            app:destination="@id/faceIdFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fingerprintFragment"
+        android:name="com.example.materialui.FingerprintFragment"
+        android:label="fingerprint_fragment"
+        tools:layout="@layout/fingerprint_fragment">
+        <argument
+            android:name="ANIMATION_SETTING"
+            app:argType="com.example.materialui.AnimationSetting" />
+        <action
+            android:id="@+id/action_fingerprintFragment_to_loginWithFingerprintFragment"
+            app:destination="@id/loginWithFingerprintFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/loginWithFingerprintFragment"
+        android:name="com.example.materialui.LoginWithFingerprintFragment"
+        android:label="login_with_id_fragment"
+        tools:layout="@layout/login_with_id_fragment">
+        <argument
+            android:name="authenticationType"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/pinFragment"
+        android:name="com.example.materialui.PinFragment"
+        android:label="pin_fragment"
+        tools:layout="@layout/pin_fragment">
+        <argument
+            android:name="ANIMATION_SETTING"
+            app:argType="com.example.materialui.AnimationSetting" />
+        <action
+            android:id="@+id/action_pinFragment_to_loginWithPinFragment"
+            app:destination="@id/loginWithPinFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/faceIdFragment"
+        android:name="com.example.materialui.FaceIdFragment"
+        android:label="face_id_fragment"
+        tools:layout="@layout/face_id_fragment">
+        <argument
+            android:name="ANIMATION_SETTING"
+            app:argType="com.example.materialui.AnimationSetting" />
+        <action
+            android:id="@+id/action_faceIdFragment_to_loginWithIdFragment"
+            app:destination="@id/loginWithFingerprintFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_faceIdFragment_to_facePhotoFragment"
+            app:destination="@id/facePhotoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginWithPinFragment"
+        android:name="com.example.materialui.LoginWithPinFragment"
+        android:label="fragment_login_pin"
+        tools:layout="@layout/fragment_with_login_pin" >
+        <argument
+            android:name="authenticationType"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/facePhotoFragment"
+        android:name="com.example.materialui.FacePhotoFragment"
+        android:label="fragment_face_photo"
+        tools:layout="@layout/fragment_face_photo" >
+        <argument
+            android:name="ImageUrl"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+
+
 </navigation>
