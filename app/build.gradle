@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.materialui"
-        minSdkVersion 21
+        minSdkVersion 22
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -46,7 +46,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
     implementation "androidx.biometric:biometric:$biometricVersion"
     implementation "com.google.code.gson:gson:$gsonVersion"
-//    implementation "com.microsoft.projectoxford:face:$faceIdVersion"
+    implementation "com.microsoft.projectoxford:face:$faceIdVersion"
     // CameraX core library using camera2 implementation
     implementation "androidx.camera:camera-camera2:$camerax_version"
     // CameraX Lifecycle Library

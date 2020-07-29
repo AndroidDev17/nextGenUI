@@ -10,3 +10,6 @@ const val AUTHENTICATION_MODE_NOT_SET = -1
 
 
 const val PIN = "saved-pin"
+
+const val FACE_ID = "face-id"
+

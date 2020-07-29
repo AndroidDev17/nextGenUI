@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val destination = when(viewModel.getAuthenticationMode()) {
             AUTHENTICATION_MODE_PIN -> R.id.loginWithPinFragment
             AUTHENTICATION_MODE_FINGERPRINT-> R.id.loginWithFingerprintFragment
-            AUTHENTICATION_MODE_FACE_ID -> R.id.faceIdFragment
+            AUTHENTICATION_MODE_FACE_ID -> R.id.loginWithFaceIdFragment
             else -> R.id.FirstFragment
         }
         navGraph.startDestination = destination

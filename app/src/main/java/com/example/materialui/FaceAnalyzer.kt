@@ -56,20 +56,20 @@ class FaceAnalyzer(private val faceBoundary: FaceBoundary) : ImageAnalysis.Analy
     }
 
     override fun onSuccess(faceList: MutableList<Face>?) {
-        log(TAG, "onSuccess...${faceList?.size}")
+//        log(TAG, "onSuccess...${faceList?.size}")
         faceList?.forEach {
             isFaceInside(it.boundingBox)
         }
     }
 
     private fun isFaceInside(boundingBox: Rect) {
-        log(TAG, "isFaceInside..")
+//        log(TAG, "isFaceInside..")
         if (boundingBox.left > faceBoundary.left &&
             boundingBox.top > faceBoundary.top &&
             boundingBox.right < faceBoundary.right &&
             boundingBox.bottom < faceBoundary.bottom
         ) {
-            log(TAG, "face found..")
+//            log(TAG, "face found..")
             _faceInsideBoundary.postValue(true)
         }
     }
@@ -77,6 +77,6 @@ class FaceAnalyzer(private val faceBoundary: FaceBoundary) : ImageAnalysis.Analy
     fun getFaceInBoundaryLiveData() : LiveData<Boolean> = _faceInsideBoundary
 
     override fun onFailure(e: Exception) {
-        log(TAG, "onFailure..")
+//        log(TAG, "onFailure..")
     }
 }

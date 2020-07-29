@@ -18,9 +18,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.materialui.viewmodels.LoginWithFaceIdViewModelFactory
 import kotlinx.android.synthetic.main.face_id_fragment.*
+import kotlinx.android.synthetic.main.fragment_face_photo.*
 import java.io.File
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.Executors
@@ -28,9 +32,9 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
+class LoginWithFaceIdFragment : Fragment() {
 
-open class FaceIdFragment : Fragment() {
-
+    private val TAG = "LoginWithFaceIdFragment"
     private var preview: Preview? = null
     private var imageCapture: ImageCapture? = null
     private var camera: Camera? = null
@@ -38,12 +42,20 @@ open class FaceIdFragment : Fragment() {
     private val cameraExecutor = Executors.newFixedThreadPool(2)
     private lateinit var faceAnalyzer: FaceAnalyzer
     private var cameraProvider: ProcessCameraProvider? = null
+    private val factory : LoginWithFaceIdViewModelFactory by lazy {
+        LoginWithFaceIdViewModelFactory(requireContext().applicationContext)
+    }
+
+    private val viewModel: LoginWithFaceIdViewModel by viewModels {
+        factory
+    }
 
     // CAMERA Permissions Contract
     private val askCameraPermission by lazy {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isPermissionGranted ->
             if (isPermissionGranted) {
                 log(TAG, "permission granted ...")
+                setUpCameraProcess()
                 startCamera()
             } else {
                 log(TAG, "permission not granted ...")
@@ -63,53 +75,73 @@ open class FaceIdFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.face_id_fragment, container, false)
+        return inflater.inflate(R.layout.login_with_face_id_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         askCameraPermission.launch(Manifest.permission.CAMERA)
-        btn_capture.setOnClickListener {
-            takePhoto()
-        }
-        val faceBoundary = FaceBoundary(requireContext())
-        faceAnalyzer = FaceAnalyzer(faceBoundary)
-        faceBoundary.id = View.generateViewId()
-        root_container.addView(faceBoundary)
-        val constraint = ConstraintSet()
-        constraint.clone(root_container as ConstraintLayout)
-        constraint.connect(
-            faceBoundary.id,
-            ConstraintSet.RIGHT,
-            ConstraintSet.PARENT_ID,
-            ConstraintSet.RIGHT
-        )
-        constraint.connect(
-            faceBoundary.id,
-            ConstraintSet.LEFT,
-            ConstraintSet.PARENT_ID,
-            ConstraintSet.LEFT
-        )
-        constraint.connect(
-            faceBoundary.id,
-            ConstraintSet.TOP,
-            ConstraintSet.PARENT_ID,
-            ConstraintSet.TOP
-        )
-        constraint.connect(
-            faceBoundary.id,
-            ConstraintSet.BOTTOM,
-            ConstraintSet.PARENT_ID,
-            ConstraintSet.BOTTOM
-        )
-        constraint.applyTo(root_container)
-        faceAnalyzer.getFaceInBoundaryLiveData()
-            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                if (it) {
-//                    requireContext().toast("face inside")
-                    takePhoto()
+
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
+        viewModel.getProgressBarStatus().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if (it) {
+                enableProgress()
+            } else {
+                disableProgress()
+            }
+        })
+        viewModel.getLiveFaceDetectData().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            var info:String = ""
+            if (it.isSuccess ) {
+                log(TAG,"face detected ...")
+                info = (it.faces?.size.toString() + " face"
+                        + (if (it.faces?.size != 1) "s" else "") + " detected")
+                if (it.faces != null) {
+                    log(TAG,"face detected sure")
+                    if (it.faces.size ==1 ) {
+                        log(TAG,"only one face detected sure")
+                        val currentFaceId = it.faces[0].faceId
+                        val savedFaceId = viewModel.getFaceId()
+                        viewModel.verifyFace(currentFaceId,savedFaceId)
+                        info = "matching face ..."
+                    } else {
+                        log(TAG,"multiple face detected sure")
+                        info = "multiple face detected"
+                    }
+                } else {
+                    info = "0 face detected"
                 }
-            })
+            } else {
+                info = " error :: ${it.exception?.message}"
+                log(TAG,"trace :: ${it.exception?.stackTrace}")
+            }
+            requireContext().toast(info)
+        })
+
+        viewModel.getLiveVerifyFaceData().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            var msg = "no message"
+            if (it != null) {
+                val formatter = DecimalFormat("#0.00")
+                msg =
+                    ((if (it.isIdentical) "The same person" else "Different persons")
+                            + ". The confidence is " + formatter.format(it.confidence))
+                if (it.confidence > .75f) {
+                    findNavController().navigate(LoginWithFaceIdFragmentDirections.actionLoginWithFaceIdFragmentToWelcomeWithFaceIdFragment())
+                }
+            } else {
+                msg = "verification failed"
+                restartCameraProcess()
+            }
+            requireContext().toast(msg)
+        })
+    }
+
+    private fun restartCameraProcess() {
+        setUpCameraProcess()
+        startCamera()
     }
 
     private fun startCamera() {
@@ -180,16 +212,18 @@ open class FaceIdFragment : Fragment() {
                     val savedUri = Uri.fromFile(photoFile)
                     val msg = "Photo capture succeeded: $savedUri"
 //                    requireContext().toast(msg)
-                    navigateToFacePhoto(savedUri.toString())
+                    viewModel.loadBitmap(savedUri)
                     log(TAG, msg)
                 }
             })
     }
 
-    private fun navigateToFacePhoto(url:String) {
-        findNavController().navigate(
-            FaceIdFragmentDirections.actionFaceIdFragmentToFacePhotoFragment(ImageUrl =url )
-        )
+    private fun enableProgress() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun disableProgress() {
+        progressBar.visibility = View.GONE
     }
 
     private fun bindCameraUseCase() {
@@ -261,4 +295,49 @@ open class FaceIdFragment : Fragment() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
+
+    private fun setUpCameraProcess() {
+        val faceBoundary = FaceBoundary(requireContext())
+        faceAnalyzer = FaceAnalyzer(faceBoundary)
+        faceBoundary.id = View.generateViewId()
+        root_container.addView(faceBoundary)
+        val constraint = ConstraintSet()
+        constraint.clone(root_container as ConstraintLayout)
+        constraint.connect(
+            faceBoundary.id,
+            ConstraintSet.RIGHT,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.RIGHT
+        )
+        constraint.connect(
+            faceBoundary.id,
+            ConstraintSet.LEFT,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.LEFT
+        )
+        constraint.connect(
+            faceBoundary.id,
+            ConstraintSet.TOP,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.TOP
+        )
+        constraint.connect(
+            faceBoundary.id,
+            ConstraintSet.BOTTOM,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.BOTTOM
+        )
+        constraint.applyTo(root_container)
+        faceAnalyzer.getFaceInBoundaryLiveData()
+            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                if (it) {
+//                    requireContext().toast("face inside")
+                    takePhoto()
+                    if (this::imageAnalyzer.isInitialized) {
+                        imageAnalyzer.clearAnalyzer()
+                    }
+                }
+            })
+    }
+
 }

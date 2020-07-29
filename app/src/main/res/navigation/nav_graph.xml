@@ -115,7 +115,24 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="null" />
+        <action
+            android:id="@+id/action_facePhotoFragment_to_loginWithFaceIdFragment"
+            app:destination="@id/loginWithFaceIdFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/loginWithFaceIdFragment"
+        android:name="com.example.materialui.LoginWithFaceIdFragment"
+        android:label="login_with_face_id_fragment"
+        tools:layout="@layout/login_with_face_id_fragment" >
+        <action
+            android:id="@+id/action_loginWithFaceIdFragment_to_welcomeWithFaceIdFragment"
+            app:destination="@id/welcomeWithFaceIdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeWithFaceIdFragment"
+        android:name="com.example.materialui.WelcomeWithFaceIdFragment"
+        android:label="fragment_welcome_with_face_id"
+        tools:layout="@layout/fragment_welcome_with_face_id" />
 
 
 </navigation>
