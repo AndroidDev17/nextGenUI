@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    motion:layoutDescription="@xml/char_animation_scene"
+    tools:context=".MotionFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guide_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guide_line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_L"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="L"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_l2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="l" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_o"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="o" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="y" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="d" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="s" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="B" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="a" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="n" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/char_k"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="24sp"
+        android:text="k" />
+</androidx.constraintlayout.motion.widget.MotionLayout>

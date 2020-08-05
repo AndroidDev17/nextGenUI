@@ -133,6 +133,15 @@
         android:name="com.example.materialui.WelcomeWithFaceIdFragment"
         android:label="fragment_welcome_with_face_id"
         tools:layout="@layout/fragment_welcome_with_face_id" />
+    <fragment
+        android:id="@+id/motionFragment"
+        android:name="com.example.materialui.MotionFragment"
+        android:label="fragment_motion"
+        tools:layout="@layout/fragment_motion" >
+        <action
+            android:id="@+id/action_motionFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
 
 
 </navigation>

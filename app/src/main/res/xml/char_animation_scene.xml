@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    motion:motionDebug="SHOW_PATH">
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/horizontal_guide_line"
+            android:orientation="horizontal"
+            motion:layout_constraintGuide_percent=".3" />
+        <Constraint
+            android:id="@+id/horizontal_guide_line2"
+            android:orientation="horizontal"
+            motion:layout_constraintGuide_percent=".4" />
+        <Constraint
+            android:id="@+id/char_L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+            />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_l2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_L">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+            />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_o"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_l2">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_o">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_y">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_d">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_b">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_a">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_k"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/char_n">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="@color/colorText" />
+        </Constraint>
+
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/horizontal_guide_line"
+            android:orientation="horizontal"
+            motion:layout_constraintGuide_percent=".3" />
+        <Constraint
+            android:id="@+id/horizontal_guide_line2"
+            android:orientation="horizontal"
+            motion:layout_constraintGuide_percent=".4" />
+        <Constraint
+            android:id="@+id/char_L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toLeftOf="@id/char_l2"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#E91E63" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_l2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toRightOf="@+id/char_L"
+            motion:layout_constraintRight_toLeftOf="@id/char_o"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line"
+            motion:layout_constraintHorizontal_chainStyle="packed">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#2196F3" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_o"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toRightOf="@+id/char_l2"
+            motion:layout_constraintRight_toLeftOf="@id/char_y"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line"
+            motion:layout_constraintHorizontal_chainStyle="packed">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#FF9800" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toRightOf="@+id/char_o"
+            motion:layout_constraintRight_toLeftOf="@id/char_d"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line"
+            motion:layout_constraintHorizontal_chainStyle="packed">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#4CAF50" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintLeft_toRightOf="@+id/char_y"
+            motion:layout_constraintRight_toLeftOf="@id/char_s"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line"
+            motion:layout_constraintHorizontal_chainStyle="packed">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#FF5722" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintLeft_toRightOf="@+id/char_d"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#9C27B0" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/char_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toLeftOf="@+id/char_a"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line2">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#F44336" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintLeft_toRightOf="@+id/char_b"
+            motion:layout_constraintRight_toLeftOf="@+id/char_n"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line2">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#FFC107" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintLeft_toRightOf="@+id/char_a"
+            motion:layout_constraintRight_toLeftOf="@+id/char_k"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line2">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#4CAF50" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/char_k"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            motion:layout_constraintLeft_toRightOf="@+id/char_n"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/horizontal_guide_line2">
+            <CustomAttribute
+                motion:attributeName="textColor"
+                motion:customColorValue="#2196F3" />
+        </Constraint>
+
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/transition_current_scene"
+        motion:constraintSetEnd="@id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000"
+        motion:motionInterpolator="easeInOut">
+        <KeyFrameSet>
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_L"
+                motion:percentY="0.4" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_l2"
+                motion:percentY="0.4" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_o"
+                motion:percentY="0.4" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_y"
+                motion:percentY="0.4" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_d"
+                motion:percentY="0.4" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_s"
+                motion:percentY="0.4" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_b"
+                motion:percentY="0.8" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_a"
+                motion:percentY="0.8" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_n"
+                motion:percentY="0.8" />
+            <KeyPosition
+                motion:framePosition="50"
+                motion:keyPositionType="parentRelative"
+                motion:motionTarget="@id/char_k"
+                motion:percentY="0.8" />
+        </KeyFrameSet>
+    </Transition>
+
+</MotionScreen>

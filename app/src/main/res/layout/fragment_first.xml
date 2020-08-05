@@ -54,6 +54,26 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+
+
+<!--    <com.example.materialui.view.CircularProgressButton-->
+<!--        android:id="@+id/btn_login"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:gravity="center"-->
+<!--        style="@style/Widget.AppCompat.Button.Colored"-->
+<!--        android:text="LOG IN"-->
+<!--        app:finalCornerAngle="50dp"-->
+<!--        app:initialCornerAngle="0dp"-->
+<!--        app:spinning_bar_color="#FFFFFF"-->
+<!--        app:spinning_bar_padding="0dp"-->
+<!--        app:spinning_bar_width="3dp"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/password"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:transitionName="@string/shared_login_btn_transition"/>-->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"

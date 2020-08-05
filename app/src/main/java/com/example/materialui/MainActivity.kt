@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 super.onBackPressed()
     }
 
-    fun navigateToStart() {
+    private fun navigateToStart() {
         val navHostFragment = nav_host_fragment as NavHostFragment
         val graphInflater = navHostFragment.navController.navInflater
         val navGraph = graphInflater.inflate(R.navigation.nav_graph)
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             AUTHENTICATION_MODE_PIN -> R.id.loginWithPinFragment
             AUTHENTICATION_MODE_FINGERPRINT-> R.id.loginWithFingerprintFragment
             AUTHENTICATION_MODE_FACE_ID -> R.id.loginWithFaceIdFragment
-            else -> R.id.FirstFragment
+            else -> R.id.motionFragment
         }
         navGraph.startDestination = destination
         navController.graph = navGraph

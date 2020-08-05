@@ -4,10 +4,17 @@ import android.content.Context
 import android.graphics.*
 import android.media.Image
 import android.util.Log
+import android.util.TypedValue
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.ByteArrayOutputStream
+import javax.security.auth.callback.Callback
+import kotlin.coroutines.resumeWithException
 
 fun log(tag:String,msg:String?) {
     msg?.let {
@@ -73,3 +80,35 @@ fun Image.toBitmap(): Bitmap {
     val imageBytes = out.toByteArray()
     return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }
+
+fun Int.toDp(context: Context):Float = TypedValue.applyDimension(
+    TypedValue.COMPLEX_UNIT_DIP,this.toFloat(),context.resources.displayMetrics
+)
+
+//fun callbackToCoroutine(): Result<String> =
+//    suspendCancellableCoroutine { continuation ->
+//        if (continuation.isActive) {
+//            api.addOnCompleteListener { result ->
+//                continuation.resume(result)
+//            }.addOnFailureListsner { error ->
+//                continuation.resumeWithException(error)
+//            }
+//        }
+//    }
+//
+//fun flowFrom(api:CallbackBasedApi) : Flow<T> = callbackFlow {
+//    val responseListener = object : Callback {
+//        override fun onNext(value:T) {
+//            offer(value)
+//        }
+//        override fun onError(e:Throwable) {
+//            close(e)
+//        }
+//        override fun onComplete() {
+//            close()
+//        }
+//    }
+//    api.register(responseListener)
+//    awaitClose { api.unregister(responseListener) }
+//
+//}

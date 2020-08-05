@@ -34,7 +34,7 @@ class FaceAnalyzer(private val faceBoundary: FaceBoundary) : ImageAnalysis.Analy
         .build()
 
 
-    private val detector = FaceDetection.getClient(realTimeOpts)
+    private val detector = FaceDetection.getClient(highAccuracyOpts)
 
     private fun ByteBuffer.toByteArray(): ByteArray {
         rewind()    // Rewind the buffer to zero
