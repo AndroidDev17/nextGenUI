@@ -26,5 +26,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="endpoint">https://westcentralus.api.cognitive.microsoft.com/face/v1.0</string>
     <string name="subscription_key">12345</string>
+    <string name="myTxt">It is such a feel-good to connect with like-minded people who share your visions as well as your dilemmas. The different workshops and programs the BRGs have held helped to shed light on situations as well as provide “gems” for you to use to help navigate through circumstances.Working and being involved with the BRGs have allowed me to expand my network and connect with others from various titles and disciplines within the Publicis Groupe organization, from C-Level executives to assistant negotiators.</string>
 
 </resources>

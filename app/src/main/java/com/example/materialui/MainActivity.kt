@@ -52,7 +52,8 @@ class MainActivity : AppCompatActivity() {
             AUTHENTICATION_MODE_PIN -> R.id.loginWithPinFragment
             AUTHENTICATION_MODE_FINGERPRINT-> R.id.loginWithFingerprintFragment
             AUTHENTICATION_MODE_FACE_ID -> R.id.loginWithFaceIdFragment
-            else -> R.id.motionFragment
+//            else -> R.id.motionFragment
+            else -> R.id.animationDemoFragment
         }
         navGraph.startDestination = destination
         navController.graph = navGraph

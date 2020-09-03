@@ -142,6 +142,11 @@
             android:id="@+id/action_motionFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/animationDemoFragment"
+        android:name="com.example.materialui.animated.AnimationDemoFragment"
+        android:label="fragment_animation_demo"
+        tools:layout="@layout/fragment_animation_demo" />
 
 
 </navigation>

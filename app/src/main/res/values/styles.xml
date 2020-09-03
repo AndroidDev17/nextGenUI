@@ -25,5 +25,11 @@
         <item name="android:drawablePadding">16dp</item>
     </style>
 
-    <color name="off_white">#F1F1F1</color>
+    <style name="MaterialTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/crazyPink</item>
+        <item name="colorPrimaryDark">@color/crazyPink</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+    </style>
+
 </resources>
